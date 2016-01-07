@@ -1,0 +1,109 @@
+
+<h1 id="janvier-2016---cours-1-">4 Janvier 2016 - Cours 1 :</h1>
+
+<h2 id="prolog-">Prolog :</h2>
+
+<hr />
+
+<p>fichier miam.pl :</p>
+
+<pre><code class="language-prolog">bon(chocolat).  
+mange(tom,chocolat).  
+mange(tom,chouxbruxelles).  
+</code></pre>
+
+<hr />
+
+<ul>
+  <li>interpréteur swipl</li>
+  <li>le prompt : ?-</li>
+  <li><code>?- [miam]</code> : charge le fichier miam.pl dans l’interpréteur</li>
+  <li><code>?- bon(x).</code><br />
+<code>false</code></li>
+  <li><code>bon(chocolat).</code><br />
+<code>true</code></li>
+  <li><code>mange(tom,tomate).</code><br />
+<code>false</code></li>
+  <li><code>mange(tom,X),bon(X).</code><br />
+<code>X=chocolat.</code><br />
+<em>warning : attention n’affiche que la première réponse qu’il trouve.</em></li>
+</ul>
+
+<h3 id="faits-et-rgles-">Faits et règles :</h3>
+<h4 id="faits-">Faits :</h4>
+
+<p><code>bon(chocolat).</code></p>
+
+<h4 id="rgles-">Règles :</h4>
+
+<p><code>bonchasseur(X) :- chasseur(X), chasse(X,sanssonchien).</code></p>
+
+<h3 id="donnes-">Données :</h3>
+<h4 id="constantes-">Constantes :</h4>
+
+<ul>
+  <li>Atomes : chaînes de caractères minuscule (patate)</li>
+  <li>Nombres : entiers ou flottants (666)</li>
+</ul>
+
+<h4 id="variables-">Variables :</h4>
+
+<ul>
+  <li>chaînes de caractères commençant par une majuscule (Qui)</li>
+  <li>Spécial: <code>_</code></li>
+</ul>
+
+<h4 id="prdicats-">Prédicats :</h4>
+<p>tout le reste : faits et règles.</p>
+
+<h3 id="exercices-">Exercices :</h3>
+<pre><code class="language-prolog">entree(salade).  
+entree(nems).
+
+plat(canardlaque).  
+plat(welsch).
+
+dessert(ileflottante).  
+dessert(cremebrulee).  
+dessert(moussechoco).
+
+aimepas(trinity,viande).  
+aimepas(neo,caramel).
+
+contient(nems,viande).  
+contient(canardlaque,viande).  
+contient(ileflottante,caramel).  
+contient(cremebrulee,caramel).
+
+mangepas(X,Y) :- aimepas(X,I),contient(Y,I).
+
+formule(C,E,P,D) :- entree(E),plat(P),dessert(D),not(mangepas(C,E)),not(mangepas(C,P)),not(mangepas(X,D)).  
+</code></pre>
+
+<h3 id="algorithme-dunification-">Algorithme d’Unification :</h3>
+<p>unifier(T1,T2)<br />
+si T1 et T2 sont des constantes identiques =&gt; TRUE.<br />
+si T1 et T2 sont des constantes différentes =&gt; FALSE.<br />
+si T1 est une variable =&gt; ajouter T1 &lt;- T2 à l’unificateur.<br />
+sinon si T2 est une variable =&gt; ajouter T2 &lt;- T1 à l’unificateur.<br />
+sinon T1 = f(x1,…,xn) et T2 = g(y1,…,ym)<br />
+      si n != m =&gt; FALSE.<br />
+      si f != g =&gt; FALSE.<br />
+      sinon pour i de 1 à n<br />
+      	    unifier(xi,yi)</p>
+
+<h3 id="rsolution-sld-">Résolution SLD :</h3>
+<p>resoudre(buts, substritutions)<br />
+ si buts est vide alors<br />
+  retourner substitutions des buts initiaux<br />
+ sinon<br />
+  but, autresbuts &lt;- buts<br />
+  listeclauses &lt;- clauses dont la tête s’unfie avec but<br />
+  si listeclauses est vide alors echec fsi<br />
+  sinon pour chaque clause de listeclauses faire<br />
+   _,corps &lt;- clause<br />
+   sigma &lt;- unificateur(clause,but)<br />
+   resoudre(sigma(corps) U sigma(autresbuts), sigma U substitutions)<br />
+  fpour<br />
+ fsi</p>
+
