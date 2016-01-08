@@ -1,0 +1,31 @@
+[trace] 4 ?- salle1(X,Y).
+   Call: (7) salle1(_G2791, _G2792) ? creep
+   Call: (8) pancarte1(_G2791, _G2792) ? creep
+   Call: (9) contenu(_G2792) ? creep
+   Exit: (9) contenu(tigre) ? Unknown option (h for help)
+   Exit: (9) contenu(tigre) ? Unknown option (h for help)
+   Exit: (9) contenu(tigre) ? Unknown option (h for help)
+   Exit: (9) contenu(tigre) ? creep
+   Exit: (8) pancarte1(tigre, tigre) ? creep
+   Call: (8) pancarte2(tigre, tigre) ? creep
+   Fail: (8) pancarte2(tigre, tigre) ? creep
+   Redo: (9) contenu(_G2792) ? creep
+   Exit: (9) contenu(princesse) ? creep
+   Exit: (8) pancarte1(tigre, princesse) ? creep
+   Call: (8) pancarte2(tigre, princesse) ? creep
+   Fail: (8) pancarte2(tigre, princesse) ? creep
+   Redo: (8) pancarte1(_G2791, _G2792) ? creep
+   Call: (9) contenu(_G2791) ? creep
+   Exit: (9) contenu(tigre) ? creep
+   Exit: (8) pancarte1(tigre, princesse) ? creep
+   Call: (8) pancarte2(tigre, princesse) ? creep
+   Fail: (8) pancarte2(tigre, princesse) ? creep
+   Redo: (9) contenu(_G2791) ? creep
+   Exit: (9) contenu(princesse) ? creep
+   Exit: (8) pancarte1(princesse, princesse) ? creep
+   Call: (8) pancarte2(princesse, princesse) ? creep
+   Call: (9) contenu(princesse) ? creep
+   Exit: (9) contenu(princesse) ? creep
+   Exit: (8) pancarte2(princesse, princesse) ? creep
+   Exit: (7) salle1(princesse, princesse) ? creep
+X = Y, Y = princesse.
