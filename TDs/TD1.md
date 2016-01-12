@@ -94,6 +94,13 @@ enfant(X,Y) :- mere(Y,X).
 
 %Question4
 grand_pere(X,Z) :- pere(X,Y), pere(Y,Z).
+grand_pere(X,Z) :- pere(X,Y), mere(Y,Z).
+
+grand_mere(X,Z) :- mere(X,Y), mere(Y,Z).
+grand_mere(X,Z) :- mere(X,Y), pere(Y,Z).
+
+grandparent(X,Y) :- grand_pere(X,Y).
+grandparent(X,Y) :- grand_mere(X,Y).
 
 %Question5
 frere(X,Y) :- masculin(X), enfant(X,Z), enfant(Y,Z), X \= Y.
@@ -104,9 +111,7 @@ oncle(X,Y) :- frere(X,Z), enfant(Y,Z).
 tante(X,Y) :- soeur(X,Z), enfant(Y,Z).
 
 %question7
-cousin(X,Y) :- masculin(X), oncle(Z,X), pere(Z,Y).
-cousin(X,Y) :- masculin(X), tante(Z,X), mere(Z,Y).
-cousine(X,Y) :- feminin(X), oncle(Z,X), pere(Z,Y).
-cousine(X,Y) :- feminin(X), tante(Z,X), mere(Z,Y).
+%solution prof:
+cousin(X,Y) :- masculin(X), grandparent(Z,X), grandparent(Z,Y), X\=Y, not frere(X,Y)
 ~~~
 {: .language-prolog}
