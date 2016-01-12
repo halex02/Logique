@@ -1,6 +1,6 @@
 #Feuille 1 : Introduction à Prolog
 ##Exercice 1 : Formaliser avec Prolog
-^
+
 ~~~
 %Question1
 herbivore(diplodocus).
@@ -36,7 +36,7 @@ peut_manger(X,Y) :- carnivore(X), meme_epoque(X,Y).
 {: .language-prolog}
 
 ##Exercice 2 : Unification
-^
+
 Question 1 : `TRUE`
 
 Question 2 : `X = a`
@@ -49,7 +49,7 @@ Question 4 : `X = 4+2` et `Y = 3`
 Question 5 : `X = h(Y)` et `g(X,Y) = Z`
 
 ##Exercice 3 : Histoire de famille
-^
+
 ~~~
 %Question1
 
