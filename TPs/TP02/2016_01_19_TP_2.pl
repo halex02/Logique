@@ -36,7 +36,8 @@ divise([X|[Y|L1]],L2,L3) :-  divise(L1,L4,L5), ajoute_en_tete(X,L4,L2), ajoute_e
 
 fusion(L1,[],L1).
 fusion([],L1,L1).
-fusion([X|L1],[Y|L2],L3) :- .
+fusion([X|L1],[Y|L2],L3) :- X<=Y !, ajoute_en_tete(X, L3, L4), fusion(L1, [Y|L2], L4).
+fusion([X|L1],[Y|L2],L3) :- X>Y !, ajoute_en_tete(X, L3, L4), fusion(L1, [Y|L2], L4).
 
 tri_fusion([],[]).
 tri_fusion([X],[X]).
