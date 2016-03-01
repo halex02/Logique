@@ -44,7 +44,7 @@ decoupe([X1,Y1,Z1|L1],[X2,Y2,Z2|L2],[X3,Y3,Z3|L3],[[X1,Y1,Z1,X2,Y2,Z2,X3,Y3,Z3]|
 %%fonctionne pas renvois 3 carres pas 9 pour grille(L), carres(L,R), print(R).
 carres([],[]).
 carres([X,Y,Z],R):-decoupe(X,Y,Z,R).
-carres([_,_,_|L],R):- carres(L,R).
+carres([X,Y,Z|L],R):- carres(L,Q),decoupe(X,Y,Z,R2), concatene(R2,Q,R).
 
 
 %% fonctionne

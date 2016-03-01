@@ -17,6 +17,7 @@ ajoute_en_queue(X,[Y|L1],L) :- ajoute_en_queue(X,L1,L2), ajoute_en_tete(Y,L2,L).
 extraire_tete(X,A,B) :- ajoute_en_tete(A,B,X).
 
 concatene([],L,L).
+concatene(L,[],L).
 concatene([X|L1],L2,L):-ajoute_en_tete(X,L3,L),concatene(L1,L2,L3).
 
 retourne([],L,L).
